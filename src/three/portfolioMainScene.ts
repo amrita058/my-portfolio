@@ -54,11 +54,10 @@ export default class PortfolioMainScene {
 
     window.addEventListener("resize", this.onResize);
     canvas.addEventListener("planetChange", this.onPlanetChange);
-    this.canvas.addEventListener("click", this.onClickPlanet);
-    this.canvas.addEventListener("pointerdown", (e) => {
-      console.log("pointerdown works");
-      this.environment.onCanvasClick(e);
-    });
+    // this.canvas.addEventListener("click", this.onClickPlanet);
+    // this.canvas.addEventListener("pointerdown", (e) => {
+    //   this.environment.onCanvasClick(e);
+    // });
   }
 
   update() {
@@ -69,7 +68,7 @@ export default class PortfolioMainScene {
 
   // Listen for planet changes from the render loop
   onPlanetChange = (e: Event) => {
-    console.log("here here", e);
+    console.log("event here", e);
     this.setActivePlanet((e as CustomEvent).detail);
   };
 

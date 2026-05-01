@@ -1,6 +1,9 @@
 import DiagonalRingTech from "../DiagonalRingCard";
-import Header from "../Header";
 import { AnimatePresence, motion } from "framer-motion";
+import HomeSceneCard from "./HomeSceneCard";
+import ProjectsSceneCard from "./ProjectsSceneCard";
+import ContactSceneCard from "./ContactSceneCard";
+import AboutSceneCard from "./AboutSceneCard";
 
 const getActivePlanet = (
   activePlanet: number,
@@ -8,11 +11,17 @@ const getActivePlanet = (
 ) => {
   switch (activePlanet) {
     case 1:
-      return <DiagonalRingTech onClick={onClick} />;
+      return <HomeSceneCard />;
     case 2:
-      return <div className="text-2xl text-white">hi there</div>;
+      return <AboutSceneCard />;
     case 3:
-      return <div className="tetx-2xl text-white">dbfhsdfhdsh</div>;
+      return <DiagonalRingTech onClick={onClick} />;
+    case 4:
+      return <ProjectsSceneCard onClick={onClick} />;
+    case 5:
+      return <ContactSceneCard />;
+    default:
+      return <HomeSceneCard />;
   }
 };
 
@@ -25,13 +34,11 @@ export default function SceneDescription({
   activePlanet: number;
   onClick: (page: string) => void;
 }) {
-  console.log("is visible here");
   return (
     <AnimatePresence>
       {isVisible && (
         <>
-          <Header />
-          <div className="absolute z-1 bottom-10 flex">
+          <div className="absolute z-10 bottom-10 flex">
             <motion.div
               key={activePlanet}
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -39,8 +46,10 @@ export default function SceneDescription({
               exit={{ opacity: 0, scale: 0.6, y: 40 }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
             >
-              {/* {getActivePlanet(activePlanet)} */}
-              <DiagonalRingTech onClick={onClick} />
+              {getActivePlanet(activePlanet, onClick)}
+              {/* <ProjectsSceneCard onClick={onClick} />; */}
+              {/* <ContactSceneCard /> */}
+              {/* <DiagonalRingTech onClick={onClick} /> */}
             </motion.div>
           </div>
         </>

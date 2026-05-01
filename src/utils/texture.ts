@@ -17,6 +17,17 @@ export function addBackgroundTexture(path: string) {
   return cubeTexture;
 }
 
+const safeLoad = (path: string) => {
+  const textureLoader = new THREE.TextureLoader();
+
+  const tex = textureLoader.load(path);
+
+  tex.flipY = false; // important safety for advanced pipelines
+  tex.generateMipmaps = true;
+
+  return tex;
+};
+
 export function addMeshMaterialWithTexture(
   textureName: string,
   roughness?: number,
@@ -24,29 +35,27 @@ export function addMeshMaterialWithTexture(
   intensity?: number,
   addPane?: boolean,
 ) {
-  const textureLoader = new THREE.TextureLoader();
-
-  const objectTexture = textureLoader.load(
+  const objectTexture = safeLoad(
     `public/textures/mesh/${textureName}-bl/${textureName}_albedo.png`,
   );
 
-  const objectTextureRoughness = textureLoader.load(
+  const objectTextureRoughness = safeLoad(
     `public/textures/mesh/${textureName}-bl/${textureName}_roughness.png`,
   );
 
-  const objectTextureMetallic = textureLoader.load(
+  const objectTextureMetallic = safeLoad(
     `public/textures/mesh/${textureName}-bl/${textureName}_metallic.png`,
   );
 
-  const objectTextureNormal = textureLoader.load(
+  const objectTextureNormal = safeLoad(
     `public/textures/mesh/${textureName}-bl/${textureName}_normal-ogl.png`,
   );
 
-  const objectTextureAo = textureLoader.load(
+  const objectTextureAo = safeLoad(
     `public/textures/mesh/${textureName}-bl/${textureName}_ao.png`,
   );
 
-  // const objectTextureHeight = textureLoader.load(
+  // const objectTextureHeight = safeLoad(
   //   `public/textures/mesh/${textureName}-bl/${textureName}_height.png`,
   // );
 

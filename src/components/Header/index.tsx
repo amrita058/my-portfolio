@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export default function Header() {
   return (
-    <div className="absolute top-4 z-1">
+    <div className="fixed top-4 z-50">
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: 4 }}
         animate={{ opacity: 1 }}

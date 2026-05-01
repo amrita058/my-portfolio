@@ -1,3 +1,4 @@
+import Button from "../Button";
 import RingContentCard from "./RingContentCard";
 
 const techData = [
@@ -51,14 +52,12 @@ export default function DiagonalRingTech({
           />
         </div>
       </div>
-      <button
-        className="ml-4 font-semibold text-l z-5 text-gray-600 text-nowrap pl-4 pr-4 pt-1.5 pb-1.5 rounded-4xl bg-slate-300 h-fit"
+      <Button
         onClick={() => {
-          onClick("home");
+          console.log("ghghgh");
+          onClick("skills");
         }}
-      >
-        View Details
-      </button>
+      />
     </div>
   );
 }

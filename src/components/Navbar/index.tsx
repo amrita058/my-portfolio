@@ -18,7 +18,7 @@ export default function Navbar({
     <NavAnimationLayout isHome={isHome}>
       <motion.div
         layout
-        className="pointer-events-auto p-2 rounded-full backdrop-blur-md border border-white/10 bg-white/[0.04]"
+        className="pointer-events-auto p-2 rounded-full backdrop-blur-md"
         style={{
           display: "flex",
           flexDirection: isHome ? "column" : "row",

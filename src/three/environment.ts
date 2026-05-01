@@ -79,16 +79,16 @@ export default class Environment {
   loadOrbitGuideRing() {
     // Orbit guide ring
     const orb = new THREE.Mesh(
-      new THREE.RingGeometry(9.93, 10.07, 128),
+      new THREE.RingGeometry(6.93, 7.07, 128),
       new THREE.MeshBasicMaterial({
-        color: 0x3344aa,
+        color: 0xcbc3e3,
         side: THREE.DoubleSide,
         opacity: 0.08,
         transparent: true,
       }),
     );
     orb.rotation.x = Math.PI / 2;
-    // orb.position.x = 2;
+    orb.position.y = 2;
     this.scene.add(orb);
   }
 
