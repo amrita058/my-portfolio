@@ -4,7 +4,7 @@ import { Pane } from "tweakpane";
 export function addBackgroundTexture(path: string) {
   const cubeTextureLoader = new THREE.CubeTextureLoader();
   cubeTextureLoader.setPath(path);
-  cubeTextureLoader.setPath("public/textures/cubeMap/");
+  cubeTextureLoader.setPath("public/textures/background/lightStarrySky/");
   const cubeTexture = cubeTextureLoader.load([
     "px.png",
     "nx.png",
@@ -27,39 +27,52 @@ export function addMeshMaterialWithTexture(
   const textureLoader = new THREE.TextureLoader();
 
   const objectTexture = textureLoader.load(
-    `public/textures/${textureName}-bl/${textureName}_albedo.png`,
+    `public/textures/mesh/${textureName}-bl/${textureName}_albedo.png`,
   );
 
   const objectTextureRoughness = textureLoader.load(
-    `public/textures/${textureName}-bl/${textureName}_roughness.png`,
+    `public/textures/mesh/${textureName}-bl/${textureName}_roughness.png`,
   );
 
   const objectTextureMetallic = textureLoader.load(
-    `public/textures/${textureName}-bl/${textureName}_metallic.png`,
+    `public/textures/mesh/${textureName}-bl/${textureName}_metallic.png`,
   );
 
   const objectTextureNormal = textureLoader.load(
-    `public/textures/${textureName}-bl/${textureName}_normal-ogl.png`,
+    `public/textures/mesh/${textureName}-bl/${textureName}_normal-ogl.png`,
   );
 
   const objectTextureAo = textureLoader.load(
-    `public/textures/${textureName}-bl/${textureName}_ao.png`,
+    `public/textures/mesh/${textureName}-bl/${textureName}_ao.png`,
   );
+
+  // const objectTextureHeight = textureLoader.load(
+  //   `public/textures/mesh/${textureName}-bl/${textureName}_height.png`,
+  // );
 
   objectTexture.repeat.set(3, 3);
   objectTexture.wrapS = THREE.RepeatWrapping;
   objectTexture.wrapT = THREE.RepeatWrapping;
 
+  console.log("loaded texture", textureName, metalness, roughness, intensity);
+
   //initialize the material
   const objectMaterial = new THREE.MeshStandardMaterial({});
   objectMaterial.map = objectTexture;
   objectMaterial.roughnessMap = objectTextureRoughness;
-  objectMaterial.roughness = roughness ?? 1;
+  objectMaterial.roughness = roughness ?? 0.1;
   objectMaterial.metalnessMap = objectTextureMetallic;
-  objectMaterial.metalness = metalness ?? 0.8;
+  objectMaterial.metalness = metalness ?? 0;
   objectMaterial.normalMap = objectTextureNormal;
   objectMaterial.aoMap = objectTextureAo;
-  objectMaterial.aoMapIntensity = intensity ?? 0.6;
+  objectMaterial.aoMapIntensity = 0.7;
+  objectMaterial.transparent = false;
+  objectMaterial.opacity = 1;
+  objectMaterial.alphaMap = null;
+  objectMaterial.roughness = 0.4;
+  objectMaterial.metalness = 0.1;
+  // objectMaterial.displacementMap = objectTextureHeight;
+  // objectMaterial.displacementScale = 0.05;
 
   if (addPane) {
     const pane = new Pane();

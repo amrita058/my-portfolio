@@ -33,16 +33,15 @@ export default class PortfolioMainScene {
       0.1,
       30,
     );
-    // this.camera.position.set(0, 8, 12); // look slightly from above, like solar system view
-    this.camera.position.set(0, 2, 12);
-    this.camera.lookAt(0, 0, 0);
+    // this.camera.position.set(2, 4, 11); // look slightly from above, like solar system view
+    this.camera.position.set(2, 2, 14);
+    this.camera.lookAt(2, 2, 0);
 
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
       antialias: true,
     });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-
     this.environment = new Environment(this.scene, this.canvas, this.camera);
     this.world = new World(this.environment);
 
@@ -51,8 +50,15 @@ export default class PortfolioMainScene {
     this.loop = new Loop(() => this.update());
     this.loop.start();
 
+    console.log(this.renderer.domElement === this.canvas);
+
     window.addEventListener("resize", this.onResize);
     canvas.addEventListener("planetChange", this.onPlanetChange);
+    this.canvas.addEventListener("click", this.onClickPlanet);
+    this.canvas.addEventListener("pointerdown", (e) => {
+      console.log("pointerdown works");
+      this.environment.onCanvasClick(e);
+    });
   }
 
   update() {
@@ -65,6 +71,11 @@ export default class PortfolioMainScene {
   onPlanetChange = (e: Event) => {
     console.log("here here", e);
     this.setActivePlanet((e as CustomEvent).detail);
+  };
+
+  onClickPlanet = (e: MouseEvent) => {
+    // Handle planet click event
+    console.log("Planet clicked!", e);
   };
 
   onResize = () => {

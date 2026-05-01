@@ -63,14 +63,16 @@ export function buildDust(count: number) {
   return new THREE.Points(
     geo,
     new THREE.PointsMaterial({
-      size: 0.04,
+      size: 0.05,
       sizeAttenuation: true,
-      opacity: 0.38,
+      opacity: 0.6,
       transparent: true,
       vertexColors: true,
       map: createDustTexture(),
-      alphaTest: 0.01,
+
       depthWrite: false,
+      depthTest: true,
+      blending: THREE.AdditiveBlending,
     }),
   );
 }

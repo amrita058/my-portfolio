@@ -8,6 +8,6 @@ export default class World {
   }
 
   update() {
-    this.environment.updateMeshes();
+    // this.environment.updateMeshes();
   }
 }
