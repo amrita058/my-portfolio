@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import CanvasApp from "./CanvasApp";
 import Sidebar from "./components/Navbar";
-import { Layout } from "./components/Layout";
 import SceneDescription from "./components/SceneDescription";
 import Header from "./components/Header";
+import { Layout } from "./pages/Layout";
 
 export default function App() {
   const [activePlanet, setActivePlanet] = useState<number>(-1);

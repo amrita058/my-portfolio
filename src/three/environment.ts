@@ -1,23 +1,32 @@
 import * as THREE from "three";
 import { buildDust, buildStars } from "../utils/helper";
 import { PLANETS } from "../data/planets";
-import { addMeshMaterialWithTexture } from "../utils/texture";
+import {
+  createNoiseTexture,
+  createTextTexture,
+  createTextTextureMaterial,
+} from "../utils/texture";
 
 export default class Environment {
   scene: THREE.Scene;
   planetsMeshes: THREE.Mesh<
     THREE.IcosahedronGeometry,
-    THREE.MeshStandardMaterial,
+    THREE.MeshPhongMaterial,
     THREE.Object3DEventMap
   >[];
   canvas: HTMLCanvasElement;
   camera: THREE.PerspectiveCamera;
+  dust;
+  stBg;
+  stNr;
   ORBIT_SPEED = 0.001;
   orbitAngles: number[] = [];
   orbitOffset = 0;
   isFollowing = false;
   followIndex = -1;
   activePlanetIndex = -1;
+
+  private startTime = performance.now();
 
   constructor(
     scene: THREE.Scene,
@@ -27,6 +36,10 @@ export default class Environment {
     this.scene = scene;
     this.canvas = canvas;
     this.camera = camera;
+
+    this.stBg = buildStars(3000, 40, 160);
+    this.stNr = buildStars(600, 16, 40);
+    this.dust = buildDust(1500);
 
     this.loadLights();
     this.loadEnvironment();
@@ -56,14 +69,11 @@ export default class Environment {
   loadEnvironment() {
     // const axes = new THREE.AxesHelper();
 
-    const stBg = buildStars(3000, 40, 160);
-    const stNr = buildStars(600, 16, 40);
-    const dust = buildDust(1500);
-
     // this.scene.background = new THREE.Color(0x03030f); // subtle purple-black
     // this.scene.background = new THREE.Color(0x030310); // a bit more blue tint
     // this.scene.background = new THREE.Color(0x07030f); // a touch more purple
-    this.scene.background = new THREE.Color(0x120822);
+    // this.scene.background = new THREE.Color(0x120822); // for screen other than mac
+    this.scene.background = new THREE.Color(0x0b0314);
     // this.scene.background = new THREE.Color(0xcbc3e3); //very light purple
 
     this.scene.fog = new THREE.FogExp2(new THREE.Color(0x0b0b38), 0.008);
@@ -73,7 +83,7 @@ export default class Environment {
     //   this.scene.environment = texture;
     // });
 
-    this.scene.add(stBg, stNr, dust);
+    this.scene.add(this.stBg, this.stNr, this.dust);
   }
 
   loadOrbitGuideRing() {
@@ -93,11 +103,19 @@ export default class Environment {
   }
 
   loadExampleMesh() {
-    const sphereGeometry = new THREE.IcosahedronGeometry(0.3, 3);
-    const planetMesh = new THREE.Mesh(
-      sphereGeometry,
-      new THREE.MeshBasicMaterial({ color: "red" }),
-    );
+    const sphereGeometry = new THREE.IcosahedronGeometry(0.3, 4);
+    const textTexture = createTextTexture("Hello World");
+    const noise = createNoiseTexture();
+
+    const material = new THREE.MeshStandardMaterial({
+      color: "#4f46e5",
+      map: textTexture,
+      roughnessMap: noise,
+      roughness: 1,
+    });
+
+    const planetMesh = new THREE.Mesh(sphereGeometry, material);
+
     this.scene.add(planetMesh);
   }
 
@@ -107,7 +125,13 @@ export default class Environment {
     return PLANETS.map((planet) => {
       const planetMesh = new THREE.Mesh(
         sphereGeometry,
-        addMeshMaterialWithTexture(planet.texture),
+        createTextTextureMaterial(
+          planet.name,
+          planet.color,
+          planet.emissiveColor,
+          planet.emissiveIntensity,
+          planet.shininess,
+        ),
       );
       planetMesh.scale.setScalar(planet.radius * 6);
 
@@ -193,7 +217,7 @@ export default class Environment {
   getForwardPlanet = (
     planetsMeshes: THREE.Mesh<
       THREE.IcosahedronGeometry,
-      THREE.MeshStandardMaterial,
+      THREE.MeshPhongMaterial,
       THREE.Object3DEventMap
     >[],
     camera: THREE.PerspectiveCamera,
@@ -238,7 +262,7 @@ export default class Environment {
       const clickedIndex = this.planetsMeshes.indexOf(
         hits[0].object as unknown as THREE.Mesh<
           THREE.IcosahedronGeometry,
-          THREE.MeshStandardMaterial,
+          THREE.MeshPhongMaterial,
           THREE.Object3DEventMap
         >,
       );
@@ -252,4 +276,11 @@ export default class Environment {
       console.log("Clicked planet:", hits[0].object);
     }
   };
+
+  updateDust() {
+    const t = (performance.now() - this.startTime) / 1000; // seconds elapsed
+    this.dust.rotation.y = t * 0.013;
+    this.stBg.rotation.y = t * 0.003;
+    this.stNr.rotation.y = t * 0.006;
+  }
 }

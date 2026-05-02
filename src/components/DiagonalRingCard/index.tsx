@@ -27,13 +27,13 @@ export default function DiagonalRingTech({
         {/* Egg-shaped slanted ring container */}
         <div className="relative w-90 h-70 rotate-[-40deg] translate-x-10 -translate-y-6">
           {/* Egg ring (elliptical shape) */}
-          <div className="absolute inset-0 rounded-[50%] border border-purple-800/30 shadow-[0_0_30px_rgba(168,85,247,0.35)] scale-y-[0.85]" />
-          <div className="absolute inset-2 rounded-[50%] border shadow-[0_0_30px_rgba(168,85,247,0.35)] border-purple-400/60 scale-y-[0.85]" />
-          <div className="absolute inset-3 rounded-[50%] border border-purple-800/30 shadow-[inset_0_0_80px_rgba(168,85,247,0.35)] scale-y-[0.85]" />
+          <div className="absolute inset-0 rounded-[50%] border border-purple-800/30 shadow-[0_0_30px_rgba(90,40,160,0.18)] scale-y-[0.85]" />
+          <div className="absolute inset-2 rounded-[50%] border shadow-[0_0_30px_rgba(90,40,160,0.18)] border-purple-400/40 scale-y-[0.85]" />
+          <div className="absolute inset-3 rounded-[50%] border border-purple-800/30 shadow-[inset_0_0_80px_rgba(90,40,160,0.18)] scale-y-[0.85]" />
 
           {/* Soft glow center */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-28 h-20 bg-purple-500/30 blur-2xl rounded-full" />
+            <div className="w-28 h-20 bg-purple-900/20 blur-2xl rounded-full" />
           </div>
 
           {/* Card 1 - top right */}
@@ -54,7 +54,6 @@ export default function DiagonalRingTech({
       </div>
       <Button
         onClick={() => {
-          console.log("ghghgh");
           onClick("skills");
         }}
       />

@@ -82,7 +82,6 @@ export default function ProjectsSceneCard({
       </div>
       <Button
         onClick={() => {
-          console.log("ghghgh");
           onClick("projects");
         }}
       />

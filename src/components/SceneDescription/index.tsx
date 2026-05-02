@@ -47,9 +47,6 @@ export default function SceneDescription({
               transition={{ duration: 0.6, ease: "easeInOut" }}
             >
               {getActivePlanet(activePlanet, onClick)}
-              {/* <ProjectsSceneCard onClick={onClick} />; */}
-              {/* <ContactSceneCard /> */}
-              {/* <DiagonalRingTech onClick={onClick} /> */}
             </motion.div>
           </div>
         </>

@@ -2,4 +2,28 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px; /* adjust to your navbar height */
+}
+
+/* scrollbar width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* track (background) */
+::-webkit-scrollbar-track {
+  background: #0b0314; /* your theme background */
+}
+
+/* thumb (scroll handle) */
+::-webkit-scrollbar-thumb {
+  background: #2a1f3d; /* subtle purple-dark */
+  border-radius: 8px;
+  border: 2px solid #0b0314; /* gives padding effect */
+}
+
+/* hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background: #3a2a55;
 }

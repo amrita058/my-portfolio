@@ -9,7 +9,7 @@ export default function Header() {
         exit={{ opacity: 0, scale: 0.6, y: 40 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
       >
-        <div className="text-purple-300 flex text-3xl font-extrabold font-stretch-expanded">
+        <div className="text-purple-300 flex text-4xl font-extrabold font-stretch-expanded">
           <span className="text-purple-50 mr-2 ">Amrita</span>Bhattarai
         </div>
       </motion.div>
