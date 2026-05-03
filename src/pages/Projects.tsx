@@ -1,12 +1,8 @@
-import { useState, useRef } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useMotionValue,
-  useTransform,
-  useSpring,
-} from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 import HeaderText from "./components/HeaderText";
+import { TiltCard } from "./components/TiltCard";
+import { PROJECTS, type ProjectType } from "../data/projects";
 
 const categories = [
   "All",
@@ -17,164 +13,13 @@ const categories = [
   "PostgreSQL",
 ];
 
-const projects = [
-  {
-    id: 1,
-    title: "React E-Commerce Platform",
-    description:
-      "A modern e-commerce platform built with React, TypeScript, and Vite for optimal performance and developer experience.",
-    year: "2024",
-    tags: ["React", "TypeScript", "Vite"],
-    extraCount: 2,
-    categories: ["React Development", "TypeScript"],
-    hasLive: true,
-    accent: "#00D4FF",
-    gradientFrom: "#0f2027",
-    gradientTo: "#203a43",
-    image:
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80",
-    icon: "🛒",
-    stat: "99% Lighthouse",
-    statLabel: "Performance",
-  },
-  {
-    id: 2,
-    title: "React Native Task Manager",
-    description:
-      "Cross-platform mobile app for task management with React Native, featuring offline sync and cloud storage.",
-    year: "2024",
-    tags: ["React Native", "TypeScript", "PostgreSQL"],
-    extraCount: 1,
-    categories: ["React Native", "TypeScript", "PostgreSQL"],
-    hasLive: false,
-    accent: "#FF6B6B",
-    gradientFrom: "#1a0533",
-    gradientTo: "#2d1b69",
-    image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
-    icon: "✓",
-    stat: "50K+ Users",
-    statLabel: "Active",
-  },
-  {
-    id: 3,
-    title: "React Dashboard with Charts",
-    description:
-      "Interactive data visualization dashboard built with React, TypeScript, and modern charting libraries.",
-    year: "2023",
-    tags: ["React", "TypeScript", "Vite"],
-    extraCount: 2,
-    categories: ["React Development", "TypeScript", "Full Stack Development"],
-    hasLive: false,
-    accent: "#00FF94",
-    gradientFrom: "#0a1628",
-    gradientTo: "#1a3a2a",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    icon: "📊",
-    stat: "Real-time",
-    statLabel: "Data",
-  },
-  {
-    id: 4,
-    title: "Full Stack SaaS Platform",
-    description:
-      "End-to-end SaaS platform with authentication, billing, and a scalable microservices architecture.",
-    year: "2024",
-    tags: ["React", "Node.js", "PostgreSQL"],
-    extraCount: 3,
-    categories: ["Full Stack Development", "PostgreSQL"],
-    hasLive: true,
-    accent: "#FFD700",
-    gradientFrom: "#1c1a00",
-    gradientTo: "#2c2800",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-    icon: "⚡",
-    stat: "$2M+ ARR",
-    statLabel: "Revenue",
-  },
-  {
-    id: 5,
-    title: "TypeScript Design System",
-    description:
-      "Comprehensive design system and component library built with TypeScript, Storybook and design tokens.",
-    year: "2023",
-    tags: ["TypeScript", "Storybook", "SCSS"],
-    extraCount: 2,
-    categories: ["TypeScript", "React Development"],
-    hasLive: true,
-    accent: "#FF69B4",
-    gradientFrom: "#1a0a1a",
-    gradientTo: "#2a1028",
-    image:
-      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80",
-    icon: "🎨",
-    stat: "200+ Components",
-    statLabel: "Library",
-  },
-  {
-    id: 6,
-    title: "PostgreSQL Analytics Engine",
-    description:
-      "High-performance analytics engine powered by PostgreSQL with advanced querying and reporting capabilities.",
-    year: "2023",
-    tags: ["PostgreSQL", "Node.js", "Redis"],
-    extraCount: 2,
-    categories: ["PostgreSQL", "Full Stack Development"],
-    hasLive: false,
-    accent: "#00BFFF",
-    gradientFrom: "#001a2c",
-    gradientTo: "#00162a",
-    image:
-      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&q=80",
-    icon: "🗄️",
-    stat: "10M+ rows/s",
-    statLabel: "Throughput",
-  },
-];
-
-function TiltCard({ children, className }) {
-  const ref = useRef(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-100, 100], [8, -8]);
-  const rotateY = useTransform(x, [-100, 100], [-8, 8]);
-  const springRotX = useSpring(rotateX, { stiffness: 200, damping: 20 });
-  const springRotY = useSpring(rotateY, { stiffness: 200, damping: 20 });
-
-  const handleMouseMove = (e) => {
-    const rect = ref.current.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    x.set(e.clientX - cx);
-    y.set(e.clientY - cy);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX: springRotX,
-        rotateY: springRotY,
-        transformStyle: "preserve-3d",
-        perspective: 1000,
-      }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function ProjectCard({ project, index }) {
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: ProjectType;
+  index: number;
+}) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -189,7 +34,7 @@ function ProjectCard({ project, index }) {
         ease: [0.23, 1, 0.32, 1],
       }}
     >
-      <TiltCard className="h-full">
+      <TiltCard style={{}} className="h-full">
         <motion.div
           className="relative rounded-2xl overflow-hidden h-full cursor-pointer group"
           style={{
@@ -300,7 +145,7 @@ function ProjectCard({ project, index }) {
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
+              {project.tags.map((tag: string) => (
                 <motion.span
                   key={tag}
                   className="px-2.5 py-1 rounded-md text-xs font-medium"
@@ -343,7 +188,7 @@ function ProjectCard({ project, index }) {
                     color: "#000",
                     border: "none",
                   }}
-                  whileHover={{ scale: 1.03, brightness: 1.1 }}
+                  whileHover={{ scale: 1.03, opacity: 1.1 }}
                   whileTap={{ scale: 0.97 }}
                 >
                   <span>↗</span> View Live
@@ -373,11 +218,11 @@ function ProjectCard({ project, index }) {
   );
 }
 
-export default function FeaturedProjects() {
+export default function Projects() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [hoveredCat, setHoveredCat] = useState(null);
+  const [hoveredCat, setHoveredCat] = useState<string | null>(null);
 
-  const filtered = projects.filter(
+  const filtered = PROJECTS.filter(
     (p) => activeCategory === "All" || p.categories.includes(activeCategory),
   );
 

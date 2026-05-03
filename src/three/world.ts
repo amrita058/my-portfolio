@@ -8,7 +8,7 @@ export default class World {
   }
 
   update() {
-    // this.environment.updateMeshes();
-    // this.environment.updateDust();
+    this.environment.updateMeshes();
+    this.environment.updateDust();
   }
 }

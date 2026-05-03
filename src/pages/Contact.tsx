@@ -1,60 +1,10 @@
-import { useRef, useState, type ReactNode } from "react";
-import {
-  motion,
-  useInView,
-  useMotionValue,
-  useTransform,
-  useSpring,
-} from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { SvgComponent } from "../components/Svg";
 import { CONTACTS, type ContactType } from "../data/contact";
 import FooterText from "./components/FooterText";
 import HeaderText from "./components/HeaderText";
-import { SvgComponent } from "../components/Svg";
-
-function TiltCard({
-  children,
-  style,
-  className,
-}: {
-  children: ReactNode;
-  style: Record<string, unknown>;
-  className?: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-60, 60], [5, -5]);
-  const rotateY = useTransform(x, [-60, 60], [-5, 5]);
-  const sx = useSpring(rotateX, { stiffness: 200, damping: 22 });
-  const sy = useSpring(rotateY, { stiffness: 200, damping: 22 });
-
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      style={{
-        ...style,
-        rotateX: sx,
-        rotateY: sy,
-        transformStyle: "preserve-3d",
-        perspective: 800,
-      }}
-      onMouseMove={(e) => {
-        const r = ref?.current?.getBoundingClientRect();
-        if (r) {
-          x.set(e.clientX - r.left - r.width / 2);
-          y.set(e.clientY - r.top - r.height / 2);
-        }
-      }}
-      onMouseLeave={() => {
-        x.set(0);
-        y.set(0);
-      }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import { TiltCard } from "./components/TiltCard";
 
 function ContactCard({
   contact,
@@ -188,29 +138,12 @@ function ContactCard({
 }
 
 export default function Contact() {
-  const headerRef = useRef(null);
-  const headerInView = useInView(headerRef, { once: true });
-
   return (
     <div className=" w-full">
       <div className="relative  mx-auto flex flex-col">
         {/* Header text */}
 
-        <HeaderText text1="get in touch" />
-
-        {/* Headline — word by word */}
-
-        {/* Subtext */}
-        <motion.p
-          className="text-center mb-16 max-w-xl leading-relaxed"
-          style={{ color: "rgba(255,255,255,0.4)", fontSize: 15 }}
-          initial={{ opacity: 0 }}
-          animate={headerInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.7 }}
-        >
-          Ready to bring your vision to life? Let's discuss your project and
-          make something extraordinary together.
-        </motion.p>
+        <HeaderText text1="get in touch" text2="Build something amazing" />
 
         {/* Contact cards grid */}
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">

@@ -1,0 +1,118 @@
+export const PROJECTS = [
+  {
+    id: 1,
+    title: "React E-Commerce Platform",
+    description:
+      "A modern e-commerce platform built with React, TypeScript, and Vite for optimal performance and developer experience.",
+    year: "2024",
+    tags: ["React", "TypeScript", "Vite"],
+    extraCount: 2,
+    categories: ["React Development", "TypeScript"],
+    hasLive: true,
+    accent: "#00D4FF",
+    gradientFrom: "#0f2027",
+    gradientTo: "#203a43",
+    image:
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80",
+    icon: "🛒",
+    stat: "99% Lighthouse",
+    statLabel: "Performance",
+  },
+  {
+    id: 2,
+    title: "React Native Task Manager",
+    description:
+      "Cross-platform mobile app for task management with React Native, featuring offline sync and cloud storage.",
+    year: "2024",
+    tags: ["React Native", "TypeScript", "PostgreSQL"],
+    extraCount: 1,
+    categories: ["React Native", "TypeScript", "PostgreSQL"],
+    hasLive: false,
+    accent: "#FF6B6B",
+    gradientFrom: "#1a0533",
+    gradientTo: "#2d1b69",
+    image:
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
+    icon: "✓",
+    stat: "50K+ Users",
+    statLabel: "Active",
+  },
+  {
+    id: 3,
+    title: "React Dashboard with Charts",
+    description:
+      "Interactive data visualization dashboard built with React, TypeScript, and modern charting libraries.",
+    year: "2023",
+    tags: ["React", "TypeScript", "Vite"],
+    extraCount: 2,
+    categories: ["React Development", "TypeScript", "Full Stack Development"],
+    hasLive: false,
+    accent: "#00FF94",
+    gradientFrom: "#0a1628",
+    gradientTo: "#1a3a2a",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    icon: "📊",
+    stat: "Real-time",
+    statLabel: "Data",
+  },
+  {
+    id: 4,
+    title: "Full Stack SaaS Platform",
+    description:
+      "End-to-end SaaS platform with authentication, billing, and a scalable microservices architecture.",
+    year: "2024",
+    tags: ["React", "Node.js", "PostgreSQL"],
+    extraCount: 3,
+    categories: ["Full Stack Development", "PostgreSQL"],
+    hasLive: true,
+    accent: "#FFD700",
+    gradientFrom: "#1c1a00",
+    gradientTo: "#2c2800",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    icon: "⚡",
+    stat: "$2M+ ARR",
+    statLabel: "Revenue",
+  },
+  {
+    id: 5,
+    title: "TypeScript Design System",
+    description:
+      "Comprehensive design system and component library built with TypeScript, Storybook and design tokens.",
+    year: "2023",
+    tags: ["TypeScript", "Storybook", "SCSS"],
+    extraCount: 2,
+    categories: ["TypeScript", "React Development"],
+    hasLive: true,
+    accent: "#FF69B4",
+    gradientFrom: "#1a0a1a",
+    gradientTo: "#2a1028",
+    image:
+      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80",
+    icon: "🎨",
+    stat: "200+ Components",
+    statLabel: "Library",
+  },
+  {
+    id: 6,
+    title: "PostgreSQL Analytics Engine",
+    description:
+      "High-performance analytics engine powered by PostgreSQL with advanced querying and reporting capabilities.",
+    year: "2023",
+    tags: ["PostgreSQL", "Node.js", "Redis"],
+    extraCount: 2,
+    categories: ["PostgreSQL", "Full Stack Development"],
+    hasLive: false,
+    accent: "#00BFFF",
+    gradientFrom: "#001a2c",
+    gradientTo: "#00162a",
+    image:
+      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&q=80",
+    icon: "🗄️",
+    stat: "10M+ rows/s",
+    statLabel: "Throughput",
+  },
+];
+
+export type ProjectType = (typeof PROJECTS)[0];
