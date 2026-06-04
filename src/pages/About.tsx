@@ -149,11 +149,14 @@ const AboutSection = () => {
           <div className="flex gap-6 mt-6">
             {ABOUT.LINKS.map((link) => (
               <motion.span
-                key={link}
+                key={link.title}
                 whileHover={{ color: "#a07de0", x: 2 }}
                 className="text-[12px] text-[#7a8394] font-['Space_Mono',monospace] cursor-pointer"
+                onClick={() => {
+                  window.open(link.href, "_blank");
+                }}
               >
-                {link} →
+                {link.title} →
               </motion.span>
             ))}
           </div>
@@ -162,18 +165,17 @@ const AboutSection = () => {
         {/* Right — stat cards */}
         <div className="flex flex-col gap-4 justify-center">
           <StatCard
-            number={5}
+            number={3}
             suffix="+"
             label="Years Experience"
             delay={0.6}
           />
           <StatCard
-            number={40}
+            number={10}
             suffix="+"
             label="Projects Shipped"
             delay={0.75}
           />
-          <StatCard number={12} suffix="+" label="Happy Clients" delay={0.9} />
         </div>
       </div>
 

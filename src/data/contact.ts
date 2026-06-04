@@ -14,7 +14,7 @@ export const CONTACTS = [
   {
     id: 2,
     label: "WhatsApp",
-    value: "+880 1301-360818",
+    value: "+977 9761245154",
     accent: "#25D366",
     iconColor: "#128C3E",
     iconBg:
@@ -26,13 +26,14 @@ export const CONTACTS = [
   {
     id: 3,
     label: "LinkedIn",
-    value: "+880 1301-360818",
+    value: "linkedin.com/in/amritabhattarai",
     accent: "#BF5AF2",
     iconColor: "#0A66C2",
     iconBg:
       "linear-gradient(135deg, rgba(10,102,194,0.25), rgba(10,102,194,0.05))",
     icon: "linkedin",
     blobColor: "rgba(191,90,242,0.25)",
+    href: "https://linkedin.com/in/amritabhattarai",
   },
   {
     id: 4,
@@ -44,6 +45,7 @@ export const CONTACTS = [
       "linear-gradient(135deg, rgba(234,76,137,0.25), rgba(234,76,137,0.05))",
     icon: "location",
     blobColor: "rgba(255,107,53,0.25)",
+    href: "https://maps.google.com/?q=Kathmandu,+Nepal",
   },
 ];
 

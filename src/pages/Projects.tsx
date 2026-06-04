@@ -333,7 +333,7 @@ export default function Projects() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
         >
-          <motion.button
+          {/* <motion.button
             className="px-8 py-4 rounded-2xl text-sm font-semibold"
             style={{
               background: "rgba(255,255,255,0.04)",
@@ -351,7 +351,7 @@ export default function Projects() {
             whileTap={{ scale: 0.97 }}
           >
             View All Projects →
-          </motion.button>
+          </motion.button> */}
         </motion.div>
       </div>
     </div>

@@ -31,6 +31,7 @@ export const SKILLS = [
     ],
     stat: "50+",
     statLabel: "Projects",
+    showStats: false,
   },
   {
     id: 2,
@@ -63,6 +64,7 @@ export const SKILLS = [
     ],
     stat: "15+",
     statLabel: "Apps",
+    showStats: false,
   },
   {
     id: 3,
@@ -94,8 +96,9 @@ export const SKILLS = [
       "TypeScript",
       "Database Design",
     ],
-    stat: "99%",
+    stat: "98%",
     statLabel: "Uptime",
+    showStats: true,
   },
   {
     id: 4,
@@ -122,10 +125,11 @@ export const SKILLS = [
     tags: ["Vite", "TypeScript", "Tailwind CSS", "Git", "Docker"],
     stat: "10x",
     statLabel: "Faster",
+    showStats: true,
   },
   {
     id: 5,
-    title: "UI/UX Design",
+    title: "Responsive Web Design",
     description:
       "Creating beautiful, responsive user interfaces with modern CSS frameworks and design principles.",
     accent: "#FF69B4",
@@ -153,6 +157,7 @@ export const SKILLS = [
     ],
     stat: "100%",
     statLabel: "Responsive",
+    showStats: true,
   },
 ];
 

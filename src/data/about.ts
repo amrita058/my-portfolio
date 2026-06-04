@@ -1,15 +1,17 @@
 export const ABOUT = {
   SKILLS: [
-    "React",
-    "Node.js",
     "TypeScript",
-    "PostgreSQL",
-    "Docker",
-    "AWS",
+    "React",
+    "Next.js",
+    "Node.js",
+    "NestJS",
     "GraphQL",
     "Redis",
-    "Next.js",
+    "PostgreSQL",
     "MongoDB",
+    "RabbitMQ",
+    "Docker",
+    "AWS",
   ],
 
   PARAGRAPHS: [
@@ -18,5 +20,11 @@ export const ABOUT = {
     "My toolkit spans React, Node.js, TypeScript, PostgreSQL, Docker, and cloud platforms — but my real superpower is knowing when NOT to use a tool.",
   ],
 
-  LINKS: ["GitHub", "Resume"],
+  LINKS: [
+    { title: "GitHub", href: "https://github.com/amrita058" },
+    {
+      title: "Resume",
+      href: "https://drive.google.com/file/d/1v-xC8izQ8SK0so7I--H3FJ65LmyfKHNE/view?usp=sharing",
+    },
+  ],
 };

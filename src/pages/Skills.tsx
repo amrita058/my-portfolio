@@ -150,24 +150,29 @@ function SkillCard({ item, index }: { item: SkillType; index: number }) {
           </div>
 
           {/* Stat */}
-          <motion.div
-            className="absolute top-5 right-5 text-right"
-            animate={{ opacity: hovered ? 1 : 0.5 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div
-              className="text-xl font-bold"
-              style={{
-                color: item.accent,
-                fontFamily: "'Space Grotesk', sans-serif",
-              }}
+          {item.showStats && (
+            <motion.div
+              className="absolute top-5 right-5 text-right"
+              animate={{ opacity: hovered ? 1 : 0.5 }}
+              transition={{ duration: 0.3 }}
             >
-              {item.stat}
-            </div>
-            <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-              {item.statLabel}
-            </div>
-          </motion.div>
+              <div
+                className="text-xl font-bold"
+                style={{
+                  color: item.accent,
+                  fontFamily: "'Space Grotesk', sans-serif",
+                }}
+              >
+                {item.stat}
+              </div>
+              <div
+                className="text-xs"
+                style={{ color: "rgba(255,255,255,0.3)" }}
+              >
+                {item.statLabel}
+              </div>
+            </motion.div>
+          )}
         </motion.div>
       </TiltCard>
     </motion.div>
